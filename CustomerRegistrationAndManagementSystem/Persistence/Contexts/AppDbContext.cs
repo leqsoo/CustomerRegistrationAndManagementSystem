@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CustomerRegistrationAndManagementSystem.Domain.Models;
 
-namespace CustomerRegistrationAndManagementSystem.Models
+namespace CustomerRegistrationAndManagementSystem.Persistence.Contexts
 {
     public class AppDbContext : DbContext
     {

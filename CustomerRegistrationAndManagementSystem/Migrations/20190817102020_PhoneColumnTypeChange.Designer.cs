@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomerRegistrationAndManagementSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190813180117_InitialModel")]
-    partial class InitialModel
+    [Migration("20190817102020_PhoneColumnTypeChange")]
+    partial class PhoneColumnTypeChange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace CustomerRegistrationAndManagementSystem.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CustomerRegistrationAndManagementSystem.Models.Customer", b =>
+            modelBuilder.Entity("CustomerRegistrationAndManagementSystem.Domain.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,8 @@ namespace CustomerRegistrationAndManagementSystem.Migrations
 
                     b.Property<DateTime>("DateOfBirth");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.Property<string>("Firstname")
                         .IsRequired();
@@ -46,15 +47,19 @@ namespace CustomerRegistrationAndManagementSystem.Migrations
 
                     b.Property<string>("Language");
 
-                    b.Property<string>("Lastname");
+                    b.Property<string>("Lastname")
+                        .IsRequired();
 
-                    b.Property<int>("Mobile");
+                    b.Property<string>("Mobile")
+                        .IsRequired();
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
                     b.Property<string>("PostalCode");
 
-                    b.Property<int>("PriviteID");
+                    b.Property<string>("PriviteID")
+                        .IsRequired();
 
                     b.Property<string>("RegionState");
 
