@@ -11,12 +11,12 @@ namespace CustomerRegistrationAndManagementSystem.Domain.Models
         public int Id { get; set; }
 
         [Required]
-        //[RegularExpression("", ErrorMessage = "Please enter correct Name")]
+        //[RegularExpression(@"^([A-Z]([a-z]+|\.)$", ErrorMessage = "Please enter correct Name")]
         [MinLength(2)]
         public string Firstname { get; set; }
 
         [Required]
-        //[RegularExpression(@"[A-Z]([a-z]+|\.)", ErrorMessage = "Please enter correct LastName")]
+        //[RegularExpression(@"^([A-Z]([a-z]+|\.)$", ErrorMessage = "Please enter correct LastName")]
         [MinLength(2)]
         public string Lastname { get; set; }
 
@@ -35,7 +35,7 @@ namespace CustomerRegistrationAndManagementSystem.Domain.Models
 
         [EmailAddress]
         [Required]
-        //[RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
+        //[RegularExpression(@"^([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)$",
         //ErrorMessage = "Invalid email format")]
         public string Email { get; set; }
 
