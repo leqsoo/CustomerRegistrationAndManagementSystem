@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace CustomerRegistrationAndManagementSystem
 {
@@ -27,14 +28,18 @@ namespace CustomerRegistrationAndManagementSystem
 
             host.Run();
         }
-
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+        .ConfigureLogging((hostingContext, logging) =>
+        {
+            logging.ClearProviders();
+            logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+            logging.AddNLog();
+        })
+        .UseStartup<Startup>();
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>()
             .Build();
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
     }
 }

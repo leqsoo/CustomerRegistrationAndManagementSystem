@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CustomerRegistrationAndManagementSystem.Mapping
 {
-    public class UpdateMappingProfile : Profile
+    public class RequestLoggingMiddleware : Profile
     {
-        public UpdateMappingProfile()
+        public RequestLoggingMiddleware()
         {
             CreateMap<Customer, Customer>();
         }

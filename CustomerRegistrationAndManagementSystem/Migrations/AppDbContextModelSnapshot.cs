@@ -48,10 +48,10 @@ namespace CustomerRegistrationAndManagementSystem.Migrations
                     b.Property<string>("Lastname")
                         .IsRequired();
 
-                    b.Property<string>("Mobile")
+                    b.Property<string>("Password")
                         .IsRequired();
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired();
 
                     b.Property<string>("PostalCode");
@@ -68,6 +68,15 @@ namespace CustomerRegistrationAndManagementSystem.Migrations
                     b.Property<string>("ResidentCountry");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique();
+
+                    b.HasIndex("PriviteID")
+                        .IsUnique();
 
                     b.ToTable("Customers");
                 });

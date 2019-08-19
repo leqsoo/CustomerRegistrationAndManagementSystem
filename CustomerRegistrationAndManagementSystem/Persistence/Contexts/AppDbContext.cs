@@ -14,5 +14,14 @@ namespace CustomerRegistrationAndManagementSystem.Persistence.Contexts
         {
         }
         public DbSet<Customer> Customers { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Customer>()
+                .HasIndex(u => u.Email).IsUnique();
+            builder.Entity<Customer>()
+                .HasIndex(u => u.PhoneNumber).IsUnique();
+            builder.Entity<Customer>()
+                .HasIndex(u => u.PriviteID).IsUnique();
+        }
     }
 }

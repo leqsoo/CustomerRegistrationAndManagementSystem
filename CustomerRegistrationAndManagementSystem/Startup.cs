@@ -17,6 +17,7 @@ using CustomerRegistrationAndManagementSystem.Domain.Repositories;
 using CustomerRegistrationAndManagementSystem.Persistence.Repositories;
 using CustomerRegistrationAndManagementSystem.Domain.Services;
 using CustomerRegistrationAndManagementSystem.Services;
+using CustomerRegistrationAndManagementSystem.Helpers;
 
 namespace CustomerRegistrationAndManagementSystem
 {
@@ -54,6 +55,7 @@ namespace CustomerRegistrationAndManagementSystem
                 app.UseHsts();
             }
 
+            app.UseMiddleware<RequestLoggingMiddleware>();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

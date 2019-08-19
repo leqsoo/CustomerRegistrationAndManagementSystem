@@ -7,12 +7,10 @@ using CustomerRegistrationAndManagementSystem.Persistence.Contexts;
 
 namespace CustomerRegistrationAndManagementSystem.Persistence.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : BaseRepository, IUnitOfWork
     {
-        private readonly AppDbContext _context;
-        public UnitOfWork(AppDbContext context)
+        public UnitOfWork(AppDbContext context) : base(context)
         {
-            _context = context;
         }
         public async Task CompleteAsync()
         {

@@ -28,6 +28,7 @@ namespace CustomerRegistrationAndManagementSystem.Services
 
         public async Task<SaveCustomerResponse> SaveAsync(Customer customer)
         {
+            customer.Password = Cryptography.Encrypt(customer.Password);
             try
             {
                 await _customerRepository.AddAsync(customer);
@@ -51,7 +52,7 @@ namespace CustomerRegistrationAndManagementSystem.Services
             var exiexistingCustomerId = existingCustomer.Id;
             _mapper.Map(customer, existingCustomer);
             existingCustomer.Id = exiexistingCustomerId;
-            existingCustomer.Password = Cryptography.Encrypt(existingCustomer.Password, "MyEncryption");
+            existingCustomer.Password = Cryptography.Encrypt(existingCustomer.Password);
             try
             {
                 _customerRepository.Update(existingCustomer);

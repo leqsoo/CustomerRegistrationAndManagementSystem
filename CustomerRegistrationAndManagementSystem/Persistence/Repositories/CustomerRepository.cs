@@ -1,6 +1,7 @@
 ﻿using CustomerRegistrationAndManagementSystem.Domain.Models;
 using CustomerRegistrationAndManagementSystem.Domain.Repositories;
 using CustomerRegistrationAndManagementSystem.Persistence.Contexts;
+using CustomerRegistrationAndManagementSystem.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,12 @@ namespace CustomerRegistrationAndManagementSystem.Persistence.Repositories
 
         public async Task<IEnumerable<Customer>> ListAsync()
         {
-            return await _context.Customers.ToListAsync();
+            var customers = await _context.Customers.ToListAsync();
+            foreach (var item in customers)
+            {
+                item.Password = Cryptography.Decrypt(item.Password);
+            }
+            return customers;
         }
 
         public void Update(Customer customer)
